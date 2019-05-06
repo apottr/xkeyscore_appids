@@ -6,12 +6,15 @@ Parser Rules
 
 body    : expression+ EOF;
 
-expression  : functionCall
-            | assignment
-            | atom
+expression  : assignment
+            | bool
+            | functionCall
+            | ATOM
             ;
 
-assignment  : tag '=' atom;
+bool : (LOGICAL expression)+;
+
+assignment  : '=' expression;
 
 functionCall    : tag LPAREN arguments RPAREN;
 
@@ -19,18 +22,23 @@ arguments   : expression (',' expression)*;
 
 tag     : NAMED;
 
-atom : (STRING | NUMBER);
-
 /*
 Lexer Rules
  */
 
+WS  : [ \t\u000C\r\n]+ -> skip;
+
+ATOM : STRING | NUMBER;
+
+LOGICAL : AND | OR;
+
 LPAREN  : '(';
 RPAREN  : ')';
 
-NAMED   : [a-zA-Z]+;
+NAMED   : [a-zA-Z_]+;
 
-STRING  : '"' ~('"')* '"';
-NUMBER  : [0-9](.[0-9]+)?;
+fragment AND : 'AND' | 'and';
+fragment OR : 'OR' | 'or';
 
-WS  : [ \t\u000C\r\n]+ -> skip;
+fragment STRING  : '"' ~('"')* '"';
+fragment NUMBER  : [0-9](.[0-9]+)?;
