@@ -1,0 +1,2 @@
+fingerprint("fingerprint/phone/nokia/generic") = "user-agent: nokia" or
+     "profile: https://nds.nokia.com/uaprof/n";

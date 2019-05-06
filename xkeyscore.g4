@@ -4,7 +4,7 @@ grammar xkeyscore;
 Parser Rules
  */
 
-body    : expression+ EOF;
+body    : expression+ ';' EOF;
 
 expression  : assignment
             | bool
@@ -18,7 +18,7 @@ assignment  : '=' expression;
 
 functionCall    : tag LPAREN arguments RPAREN;
 
-arguments   : expression (',' expression)*;
+arguments   : expression expression*;
 
 tag     : NAMED;
 

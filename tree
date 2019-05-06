@@ -1,0 +1,58 @@
+
+(body 
+    (expression 
+        (functionCall 
+            (tag fingerprint) 
+            ( 
+                (arguments 
+                    (expression "anonymizer/tor/torpoject_visit")
+                ) 
+            )
+        )
+    ) 
+    (expression 
+        (assignment = 
+            (expression 
+                (functionCall 
+                    (tag http_host) 
+                    ( 
+                        (arguments 
+                            (expression "www.torproject.org")
+                        ) 
+                    )
+                )
+            )
+        )
+    ) 
+    (expression 
+        (bool and 
+            (expression 
+                (functionCall 
+                    (tag not) 
+                    ( 
+                        (arguments 
+                            (expression 
+                                (functionCall 
+                                    (tag xff_cc) 
+                                    ( 
+                                        (arguments 
+                                            (expression "US") 
+                                            (expression 
+                                                (bool OR 
+                                                    (expression "GB") OR 
+                                                    (expression "CA") OR 
+                                                    (expression "AU") OR 
+                                                    (expression "NZ")
+                                                )
+                                            )
+                                        ) 
+                                    )
+                                )
+                            )
+                        ) 
+                    )
+                )
+            )
+        )
+    ) 
+<EOF>)
