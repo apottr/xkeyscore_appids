@@ -45,6 +45,7 @@ RPAREN  : ')';
 EQ: '=';
 SC: ';';
 DS: '$';
+DOT: '.';
 
 NAMED   : LETTER+;
 
@@ -52,7 +53,7 @@ fragment AND : 'AND' | 'and';
 fragment OR : 'OR' | 'or';
 
 fragment STRING  : '"' ~('"')* '"';
-fragment NUMBER  : [0-9](.[0-9]+)?;
+fragment NUMBER  : [0-9]( DOT [0-9]+ )?;
 fragment REGEX   : '/' (ESCAPESEQ | .)+? '/'; //matches \/ escape sequence or any single character w/ non-greedy wildcard
 fragment ESCAPESEQ : '\/';
 fragment LETTER : [a-zA-Z_];
